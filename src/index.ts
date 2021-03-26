@@ -1,10 +1,14 @@
+import { read } from 'node:fs';
 import { CsvFileReader } from './CsvFileReader';
 import { MatchReader } from './MatchReader';
 import { MatchResult } from './MatchResult';
 
-const reader = new MatchReader('football.csv');
-reader.read();
-console.log(reader.data[0]);
+const reader = new CsvFileReader('football.csv');
+
+const matchReader = new MatchReader(reader)
+matchReader.load();
+
+console.log(matchReader.matches[0]);
 
 let manUWins = 0;
 
